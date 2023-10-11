@@ -32,3 +32,11 @@
 		$result = $statement->fetchAll();
 		return $statement->rowCount();
 	}
+
+	function create_article_title(string $text) {
+		$title_length = 20;
+		$stripped_html = strip_tags($text);
+		$first_n_characters = substr($stripped_html, 0, $title_length);
+		$title = str_replace(" ", "-", $first_n_characters);
+		return $title;
+	}
