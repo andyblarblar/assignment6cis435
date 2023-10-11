@@ -30,8 +30,12 @@ foreach (array_keys($swap_var) as $key) {
     if (strlen($key) > 2 && trim($swap_var[$key]) != '')
         $html = str_replace($key, $swap_var[$key], $html);
 }
-
-if (!file_exists($title)) {
+if(!is_dir("static")) {
+    $old = umask(0);
+    mkdir("static", 0777);
+    umask($old);
+}
+if (!file_exists("static" . $title)) {
     file_put_contents("static/" . $title . ".html", $html);
 }
 header("location: index.php");
