@@ -14,7 +14,9 @@ if (isset($_POST["operation"])) {
             )
         );
         if (!empty($result)) {
-            header("location: view_article.php?id=" . $connection->lastInsertId());
+            // header("location: view_article.php?id=" . $connection->lastInsertId());
+            $article_title = create_article_title($_POST["article_text"]);
+            header("location: create_static.php?title=" . $article_title . "&id=" . $connection->lastInsertId());
         }
     }
     if ($_POST["operation"] == "Edit") {
